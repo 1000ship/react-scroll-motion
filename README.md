@@ -1,70 +1,116 @@
-# Getting Started with Create React App
+# 🎞 react-scroll-page ✨
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
 
-In the project directory, you can run:
+## **!!This project is practice yet!!**
 
-### `yarn start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-### `yarn test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Simple Docs
 
-### `yarn build`
+### Markup Example
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```html
+<ScrollContainer>
+  <ScrollPage page={0}>
+    <Animator animation={batch(Fade(), Sticky(), MoveOut(0, -200))}>
+      <MediumText>Let't me show you scroll animation 😀</MediumText>
+    </Animator>
+  </ScrollPage>
+<ScrollContainer>
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- `ScrollContainer` must be root
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- `ScrollContainer`'s children must be `ScrollPage`
 
-### `yarn eject`
+- `ScrollPage` is `position: relative;` thus, if you want use flexbox, make `div` in `ScrollPage`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- `ScrollPage` has `page` props for integer
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+  *(Honestly, I don't like this way, is there awesome solution?)*
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- `Animator` must be in `ScrollPage`
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+- `Animator` has `animation` props
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Animation Object Example
 
-### Code Splitting
+```javascript
+const ZoomInScrollOut = batch(StickyIn(), FadeIn(), ZoomIn());
+const FadeUp = batch(Fade(), Move(), Sticky());
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+- You can use just single animation likes `Fade()`, `Move()`, ...
+- If you want to combinate serveral animations, use `batch(...animations`)
+- There's Fade, Move, Sticky, Zoom
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
+### Animation Types and Usages
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- `Fade( from:number, to:number )`
+  - `from` : initial opacity number (0~1), default `0`
+  - `to` : final opacity number (0~1), default `1`
+- `FadeIn( ... )`, `FadeOut( ... )`
+  - `FadeIn` is for only in-animation
+  - `FadeOut` is for only out-animation
+  - Also, `MoveIn`, `MoveOut`, `StickyIn`, `StickyOut`, `ZoomIn`, `ZoomOut` is there, and I'll skip writing descriptions about these In/Out
 
-### Advanced Configuration
+- `Move( dx:number, dy:number, outDx:number, outDy:number )`
+  - `dx` : initial x value (unit: px), default `0`
+  - `dy` : initial y value (unit: px), default `100`
+  - `outDx` : final x value, default `null`
+  - `outDy` : final y value, default `-100`
+    - If outDx is null, then use dx value rather than outDx, outDy too.
+- `Sticky( left:number, top:number )`
+  - `left` : value of style.left (unit: %), default `50`(%)
+  - `top` : value of style.top (unit: %), default `50(%)`
+- `Zoom( from:number, to:number )`
+  - `from` : initial scale value, default `10`
+  - `to` : final scale value, default `1`
+- `batch( ...animations )`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
 
-### Deployment
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Animation Object looks like this
 
-### `yarn build` fails to minify
+```javascript
+{
+  in: {
+    style: { ... }
+  },
+  out: {
+    style: { ... }
+  }
+}
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Each `style` object will be used as react props `style`
+
+- But, there's one thing different
+
+  ```javascript
+  {
+  	in: {
+  		style: {
+  			opacity: (value) => value
+  		}
+  	},
+  	out: {
+  		style: {
+  			opacity: (value) => (1 - value)
+  		}
+  	}
+  }
+  ```
+
+  Like this, style's value can be `function` type with 1 parameter (name is value)
+
+  `value` is number between 0~1, that means percentage of scroll completion
+
+  Upper animation object's opacity value will acts like 0 -> 1 -> 0, during scroll-up
