@@ -6,6 +6,10 @@
 
 
 
+## Preview
+
+![Preview Scroll Animation](_readme/scroll-animation.gif)
+
 
 
 ## Simple Docs
