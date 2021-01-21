@@ -100,16 +100,16 @@ const FadeUp = batch(Fade(), Move(), Sticky());
 
   ```javascript
   {
-  	in: {
-  		style: {
-  			opacity: (value) => value
-  		}
-  	},
-  	out: {
-  		style: {
-  			opacity: (value) => (1 - value)
-  		}
-  	}
+    in: {
+      style: {
+        opacity: (value) => value
+      }
+    },
+    out: {
+      style: {
+        opacity: (value) => (1 - value)
+      }
+    }
   }
   ```
 
