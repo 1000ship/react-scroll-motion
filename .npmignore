@@ -24,3 +24,6 @@ yarn-error.log*
 
 # practice/example files
 examples/
+src/
+yarn.lock
+.gitignore

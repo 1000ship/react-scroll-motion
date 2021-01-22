@@ -7,7 +7,12 @@
     "url": "https://github.com/1000ship/react-scroll-animator/issues"
   },
   "description": "Easy to make scroll animation with ReactJS",
-  "keywords": ["scroll", "animation", "react", "animator"],
+  "keywords": [
+    "scroll",
+    "animation",
+    "react",
+    "animator"
+  ],
   "license": "MIT",
   "author": {
     "email": "cjstjdgur1234@gmail.com",
@@ -20,7 +25,6 @@
     "url": "https://github.com/1000ship/react-scroll-animator",
     "directory": "examples"
   },
-
   "private": false,
   "devDependencies": {
     "@testing-library/jest-dom": "^5.11.4",
@@ -54,5 +58,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "dependencies": {
+    "react-scroll-motion": "^0.1.0"
   }
 }

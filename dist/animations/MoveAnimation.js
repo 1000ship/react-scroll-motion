@@ -1,34 +1,65 @@
-import { SimpleInterpolation } from "../utils/interpolation";
+"use strict";
 
-export const Move = (dx = 0, dy = 100, outDx = null, outDy = -100) => ({
-  in: {
-    style: {
-      transform: (value) =>
-        `translate(${SimpleInterpolation(dx, 0, value)}px, ${SimpleInterpolation(dy, 0, value)}px)`,
-    },
-  },
-  out: {
-    style: {
-      transform: (value) =>
-        `translate(${SimpleInterpolation(0, outDx || dx, value)}px, ${SimpleInterpolation(0, outDy || dy, value)}px)`,
-    },
-  },
+Object.defineProperty(exports, "__esModule", {
+  value: true
 });
+exports.MoveOut = exports.MoveIn = exports.Move = void 0;
 
-export const MoveIn = (dx = 0, dy = 100) => ({
-  in: {
-    style: {
-      transform: (value) =>
-        `translate(${SimpleInterpolation(dx, 0, value)}px, ${SimpleInterpolation(dy, 0, value)}px)`,
-    },
-  },
-});
+var _interpolation = require("../utils/interpolation");
 
-export const MoveOut = (dx = 0, dy = -100) => ({
-  out: {
-    style: {
-      transform: (value) =>
-        `translate(${SimpleInterpolation(0, dx, value)}px, ${SimpleInterpolation(0, dy, value)}px)`,
+var Move = function Move() {
+  var dx = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+  var dy = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 100;
+  var outDx = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+  var outDy = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : -100;
+  return {
+    "in": {
+      style: {
+        transform: function transform(value) {
+          return "translate(".concat((0, _interpolation.SimpleInterpolation)(dx, 0, value), "px, ").concat((0, _interpolation.SimpleInterpolation)(dy, 0, value), "px)");
+        }
+      }
     },
-  },
-});
+    out: {
+      style: {
+        transform: function transform(value) {
+          return "translate(".concat((0, _interpolation.SimpleInterpolation)(0, outDx || dx, value), "px, ").concat((0, _interpolation.SimpleInterpolation)(0, outDy || dy, value), "px)");
+        }
+      }
+    }
+  };
+};
+
+exports.Move = Move;
+
+var MoveIn = function MoveIn() {
+  var dx = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+  var dy = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 100;
+  return {
+    "in": {
+      style: {
+        transform: function transform(value) {
+          return "translate(".concat((0, _interpolation.SimpleInterpolation)(dx, 0, value), "px, ").concat((0, _interpolation.SimpleInterpolation)(dy, 0, value), "px)");
+        }
+      }
+    }
+  };
+};
+
+exports.MoveIn = MoveIn;
+
+var MoveOut = function MoveOut() {
+  var dx = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+  var dy = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : -100;
+  return {
+    out: {
+      style: {
+        transform: function transform(value) {
+          return "translate(".concat((0, _interpolation.SimpleInterpolation)(0, dx, value), "px, ").concat((0, _interpolation.SimpleInterpolation)(0, dy, value), "px)");
+        }
+      }
+    }
+  };
+};
+
+exports.MoveOut = MoveOut;

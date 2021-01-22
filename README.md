@@ -1,120 +1,62 @@
-# 🎞 react-scroll-animator ✨
+<h1 align="center">🎞 react-scroll-motion ✨</h1>
+<p>
+  <a href="https://www.npmjs.com/package/react-scroll-motion" target="_blank">
+    <img alt="Version" src="https://img.shields.io/npm/v/react-scroll-motion.svg">
+  </a>
+  <a href="https://github.com/1000ship/react-scroll-motion#readme" target="_blank">
+    <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
+  </a>
+  <a href="https://github.com/1000ship/react-scroll-motion/graphs/commit-activity" target="_blank">
+    <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
+  </a>
+  <a href="https://github.com/1000ship/react-scroll-motion/blob/master/LICENSE" target="_blank">
+    <img alt="License: MIT" src="https://img.shields.io/github/license/1000ship/react-scroll-motion" />
+  </a>
+</p>
 
 
-## **!!This project is practice yet!!**
+> Easy to make scroll animation with ReactJS
 
+### 🏠 [Homepage](https://github.com/1000ship/react-scroll-motion)
 
-## Installing
+## Install
 
-Using npm:
+```sh
+# Use npm
+npm install react-scroll-motion
+
+# Use yarn
+yarn add react-scroll-motion
+```
 
 ## Preview
 
-![Preview Scroll Animation](_readme/scroll-animation.gif)
+![Preview Scroll Animation](file:///Users/ShipNK/workspace/vscode/react-scroll-motion/_readme/scroll-animation.gif?lastModify=1611293114)
 
-## Simple Docs
+## References
 
-### Markup Example
+- [Simple Docs (BETA)](docs.md)
 
-```jsx
-<ScrollContainer>
-  <ScrollPage page={0}>
-    <Animator animation={batch(Fade(), Sticky(), MoveOut(0, -200))}>
-      <MediumText>Let't me show you scroll animation 😀</MediumText>
-    </Animator>
-  </ScrollPage>
-<ScrollContainer>
-```
+## Author
 
-- `ScrollContainer` must be root
+👤 **Seonghyeok Chun**
 
-- `ScrollContainer`'s children must be `ScrollPage`
+* Website: 1000ship.me
+* Github: [@1000ship](https://github.com/1000ship)
+* LinkedIn: [@Seonghyeok Chun](https://linkedin.com/in/Seonghyeok Chun)
 
-- `ScrollPage` is `position: relative;` thus, if you want use flexbox, make `div` in `ScrollPage`
+## 🤝 Contributing
 
-- `ScrollPage` has `page` props for integer
+Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/1000ship/react-scroll-motion/issues). 
 
-  *(Honestly, I don't like this way, is there awesome solution?)*
+## Show your support
 
-- `Animator` must be in `ScrollPage`
+Give a ⭐️ if this project helped you!
 
-- `Animator` has `animation` props
+## 📝 License
 
+Copyright © 2021 [Seonghyeok Chun](https://github.com/1000ship).<br />
+This project is [MIT](https://github.com/1000ship/react-scroll-motion/blob/master/LICENSE) licensed.
 
-
-### Animation Object Example
-
-```javascript
-const ZoomInScrollOut = batch(StickyIn(), FadeIn(), ZoomIn());
-const FadeUp = batch(Fade(), Move(), Sticky());
-```
-
-- You can use just single animation likes `Fade()`, `Move()`, ...
-- If you want to combinate serveral animations, use `batch(...animations`)
-- There's Fade, Move, Sticky, Zoom
-
-
-
-### Animation Types and Usages
-
-- `Fade( from:number, to:number )`
-  - `from` : initial opacity number (0~1), default `0`
-  - `to` : final opacity number (0~1), default `1`
-- `FadeIn( ... )`, `FadeOut( ... )`
-  - `FadeIn` is for only in-animation
-  - `FadeOut` is for only out-animation
-  - Also, `MoveIn`, `MoveOut`, `StickyIn`, `StickyOut`, `ZoomIn`, `ZoomOut` is there, and I'll skip writing descriptions about these In/Out
-
-- `Move( dx:number, dy:number, outDx:number, outDy:number )`
-  - `dx` : initial x value (unit: px), default `0`
-  - `dy` : initial y value (unit: px), default `100`
-  - `outDx` : final x value, default `null`
-  - `outDy` : final y value, default `-100`
-    - If outDx is null, then use dx value rather than outDx, outDy too.
-- `Sticky( left:number, top:number )`
-  - `left` : value of style.left (unit: %), default `50`(%)
-  - `top` : value of style.top (unit: %), default `50(%)`
-- `Zoom( from:number, to:number )`
-  - `from` : initial scale value, default `10`
-  - `to` : final scale value, default `1`
-- `batch( ...animations )`
-
-
-
-### Animation Object looks like this
-
-```javascript
-{
-  in: {
-    style: { ... }
-  },
-  out: {
-    style: { ... }
-  }
-}
-```
-
-- Each `style` object will be used as react props `style`
-
-- But, there's one thing different
-
-  ```javascript
-  {
-    in: {
-      style: {
-        opacity: (value) => value
-      }
-    },
-    out: {
-      style: {
-        opacity: (value) => (1 - value)
-      }
-    }
-  }
-  ```
-
-  Like this, style's value can be `function` type with 1 parameter (name is value)
-
-  `value` is number between 0~1, that means percentage of scroll completion
-
-  Upper animation object's opacity value will acts like 0 -> 1 -> 0, during scroll-up
+***
+_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_

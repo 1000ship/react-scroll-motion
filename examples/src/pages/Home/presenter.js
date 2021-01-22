@@ -18,7 +18,7 @@ import {
   Zoom,
   ZoomIn,
   ZoomOut,
-} from "../../react-scroll-animator";
+} from "react-scroll-motion";
 
 const FlexCenterStyle = {
   display: "flex",

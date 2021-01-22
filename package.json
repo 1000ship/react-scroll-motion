@@ -1,27 +1,46 @@
 {
-  "name": "react-scroll-animator",
-  "version": "0.1.0-beta",
-  "homepage": "https://github.com/1000ship/react-scroll-animator",
+  "name": "react-scroll-motion",
+  "version": "0.1.1",
+  "homepage": "https://github.com/1000ship/react-scroll-motion",
   "bugs": {
     "email": "cjstjdgur1234@gmail.com",
-    "url": "https://github.com/1000ship/react-scroll-animator/issues"
+    "url": "https://github.com/1000ship/react-scroll-motion/issues"
   },
   "description": "Easy to make scroll animation with ReactJS",
-  "keywords": ["scroll", "animation", "react", "animator"],
+  "keywords": [
+    "scroll",
+    "animation",
+    "react",
+    "animator"
+  ],
   "license": "MIT",
   "author": {
     "email": "cjstjdgur1234@gmail.com",
     "name": "Seonghyeok Chun",
     "url": "http://1000ship.me"
   },
-  "main": "dist/ScrollAnimator.js",
+  "main": "dist/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/1000ship/react-scroll-animator"
+    "url": "https://github.com/1000ship/react-scroll-motion"
   },
   "files": [
     "dist",
     "lib"
   ],
-  "private": false
+  "private": false,
+  "scripts": {
+    "build": "rimraf ./dist && babel src --out-dir dist"
+  },
+  "peerDependencies": {
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.12.11",
+    "@babel/preset-react": "^7.12.10",
+    "rimraf": "^3.0.2"
+  }
 }
