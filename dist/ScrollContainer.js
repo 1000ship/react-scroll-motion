@@ -1,11 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import styled from 'styled-components'
 import {ScrollContainerContext} from './ScrollContext';
-
-const Container = styled.div`
-  margin: 0px;
-  padding: 0px;
-`
 
 const ScrollAnimatorContainer = ({children}) => {
 
@@ -40,11 +34,11 @@ const ScrollAnimatorContainer = ({children}) => {
   
 
   return (
-    <Container>
+    <div style={{margin: 0, padding: 0}}>
       <ScrollContainerContext.Provider value={scrollData}>
         {children}
       </ScrollContainerContext.Provider>
-    </Container>
+    </div>
   );
 };
 

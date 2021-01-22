@@ -1,4 +1,4 @@
-import { SimpleInterpolation } from "../interpolation";
+import { SimpleInterpolation } from "../utils/interpolation";
 
 export const Fade = (from = 0, to = 1) => ({
   in: {

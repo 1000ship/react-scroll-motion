@@ -1,4 +1,4 @@
-import { SimpleInterpolation } from "../interpolation";
+import { SimpleInterpolation } from "../utils/interpolation";
 
 export const Zoom = (from = 10, to = 1) => ({
   in: {

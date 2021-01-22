@@ -1,28 +1,31 @@
 import React from "react";
-import styled from "styled-components";
-import Animator from "../../components/scroll_animator/Animator";
-import ScrollContainer from "../../components/scroll_animator/ScrollContainer";
-import ScrollPage from "../../components/scroll_animator/ScrollPage";
-import { batch } from "../../utils/animations/AnimationTool";
-import { Fade, FadeIn } from "../../utils/animations/FadeAnimation";
-import { Move, MoveIn, MoveOut } from "../../utils/animations/MoveAnimation";
-import { Sticky, StickyIn, StickyOut } from "../../utils/animations/StickyAnimation";
-import { Zoom, ZoomIn } from "../../utils/animations/ZoomAnimation";
+import {
+  Animator,
+  ScrollContainer,
+  ScrollContainerContext,
+  ScrollPageContext,
+  ScrollPage,
+  batch,
+  Fade,
+  FadeIn,
+  FadeOut,
+  Move,
+  MoveIn,
+  MoveOut,
+  Sticky,
+  StickyIn,
+  StickyOut,
+  Zoom,
+  ZoomIn,
+  ZoomOut,
+} from "../../react-scroll-animator";
 
-const FlexCenter = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-`;
-
-const LargeText = styled.div`
-  font-size: 3em;
-`;
-
-const MediumText = styled.div`
-  font-size: 2em;
-`;
+const FlexCenterStyle = {
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  height: "100%",
+};
 
 const Presenter = () => {
   const ZoomInScrollOut = batch(StickyIn(), FadeIn(), ZoomIn());
@@ -32,34 +35,35 @@ const Presenter = () => {
     <ScrollContainer>
       <ScrollPage page={0}>
         <Animator animation={batch(Fade(), Sticky(), MoveOut(0, -200))}>
-          <MediumText>Let't me show you scroll animation 😀</MediumText>
+          <span style={{ fontSize: "3em" }}>Let't me show you scroll animation 😀</span>
         </Animator>
       </ScrollPage>
       <ScrollPage page={1}>
         <Animator animation={ZoomInScrollOut}>
-          <LargeText>I'm FadeUpScrollOut ✨</LargeText>
+          <span style={{ fontSize: "3em" }}>I'm FadeUpScrollOut ✨</span>
         </Animator>
       </ScrollPage>
       <ScrollPage page={2}>
         <Animator animation={FadeUp}>
-          <LargeText>I'm FadeUp ⛅️</LargeText>
+          <span style={{ fontSize: "3em" }}>I'm FadeUp ⛅️</span>
         </Animator>
       </ScrollPage>
       <ScrollPage page={3}>
-        <FlexCenter>
-          <LargeText>
+        <div style={FlexCenterStyle}>
+          <span style={{ fontSize: "3em" }}>
             <Animator animation={MoveIn(-1000, 0)}>Hello Guys 👋🏻</Animator>
-            <Animator animation={MoveIn(1000, 0)}>Nice to meet you 🙋🏻‍♀️</Animator>
-            - I'm Seonghyeok - 
+            <Animator animation={MoveIn(1000, 0)}>Nice to meet you 🙋🏻‍♀️</Animator>- I'm Seonghyeok -
             <Animator animation={MoveOut(1000, 0)}>Good bye ✋🏻</Animator>
             <Animator animation={MoveOut(-1000, 0)}>See you 💛</Animator>
-          </LargeText>
-        </FlexCenter>
+          </span>
+        </div>
       </ScrollPage>
       <ScrollPage page={4}>
         <Animator animation={batch(Fade(), Sticky())}>
-          <LargeText>Done</LargeText>
-          <MediumText>There's FadeAnimation, MoveAnimation, StickyAnimation, ZoomAnimation</MediumText>
+          <span style={{ fontSize: "3em" }}>Done</span>
+          <span style={{ fontSize: "3em" }}>
+            There's FadeAnimation, MoveAnimation, StickyAnimation, ZoomAnimation
+          </span>
         </Animator>
       </ScrollPage>
     </ScrollContainer>

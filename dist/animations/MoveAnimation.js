@@ -1,4 +1,4 @@
-import { SimpleInterpolation } from "../interpolation";
+import { SimpleInterpolation } from "../utils/interpolation";
 
 export const Move = (dx = 0, dy = 100, outDx = null, outDy = -100) => ({
   in: {
