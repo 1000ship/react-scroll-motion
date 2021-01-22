@@ -17,8 +17,6 @@
 
 > Easy to make scroll animation with ReactJS
 
-### 🏠 [Homepage](https://github.com/1000ship/react-scroll-motion)
-
 ## Install
 
 ```sh
@@ -31,7 +29,7 @@ yarn add react-scroll-motion
 
 ## Preview
 
-![Preview Scroll Animation](file:///Users/ShipNK/workspace/vscode/react-scroll-motion/_readme/scroll-animation.gif?lastModify=1611293114)
+![Preview Scroll Animation](_readme/scroll-animation.gif)
 
 ## References
 
