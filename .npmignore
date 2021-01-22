@@ -26,5 +26,4 @@ yarn-error.log*
 examples/
 src/
 yarn.lock
-.gitignore
 _readme
