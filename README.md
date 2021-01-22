@@ -33,7 +33,7 @@ yarn add react-scroll-motion
 
 ## References
 
-- [Simple Docs (BETA)](docs.md)
+- [Simple Docs (BETA)](_readme/docs.md)
 
 ## Author
 

@@ -1,4 +1,4 @@
-export const Sticky = (left = 50, top = 50) => ({
+export const Sticky = (left:number = 50, top:number = 50) => ({
   in: {
     style: {
       left: `${left}%`,
@@ -17,7 +17,7 @@ export const Sticky = (left = 50, top = 50) => ({
   },
 });
 
-export const StickyIn = (left = 50, top = 50) => ({
+export const StickyIn = (left:number = 50, top:number = 50) => ({
   in: {
     style: {
       left: `${left}%`,
@@ -36,7 +36,7 @@ export const StickyIn = (left = 50, top = 50) => ({
   },
 });
 
-export const StickyOut = (left = 50, top = 50) => ({
+export const StickyOut = (left:number = 50, top:number = 50) => ({
   in: {
     style: {
       left: `${left}%`,

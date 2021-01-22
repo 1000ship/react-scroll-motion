@@ -1,13 +1,6 @@
 "use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
+Object.defineProperty(exports, "__esModule", { value: true });
 exports.ScrollPageContext = exports.ScrollContainerContext = void 0;
-
-var _react = require("react");
-
-var ScrollContainerContext = /*#__PURE__*/(0, _react.createContext)(null);
-exports.ScrollContainerContext = ScrollContainerContext;
-var ScrollPageContext = /*#__PURE__*/(0, _react.createContext)(null);
-exports.ScrollPageContext = ScrollPageContext;
+var react_1 = require("react");
+exports.ScrollContainerContext = react_1.createContext({});
+exports.ScrollPageContext = react_1.createContext({ page: 0 });

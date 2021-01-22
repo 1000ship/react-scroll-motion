@@ -1,65 +1,57 @@
 "use strict";
-
-function _typeof(obj) { "@babel/helpers - typeof"; if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports["default"] = void 0;
-
-var _react = _interopRequireWildcard(require("react"));
-
-var _ScrollContext = require("./ScrollContext");
-
-function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function _getRequireWildcardCache() { return cache; }; return cache; }
-
-function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || _typeof(obj) !== "object" && typeof obj !== "function") { return { "default": obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj["default"] = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
-
-function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-var Animator = function Animator(_ref) {
-  var _animation$out, _animation$in;
-
-  var children = _ref.children,
-      _ref$animation = _ref.animation,
-      animation = _ref$animation === void 0 ? {} : _ref$animation;
-
-  var _useContext = (0, _react.useContext)(_ScrollContext.ScrollContainerContext),
-      currentPage = _useContext.currentPage,
-      currentProgress = _useContext.currentProgress;
-
-  var _useContext2 = (0, _react.useContext)(_ScrollContext.ScrollPageContext),
-      page = _useContext2.page;
-
-  var filterStyle = function filterStyle() {
-    var style = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-
-    var filteredStyle = _objectSpread({}, style);
-
-    for (var _len = arguments.length, params = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
-      params[_key - 1] = arguments[_key];
-    }
-
-    for (var key in filteredStyle) {
-      if (typeof filteredStyle[key] === "function") filteredStyle[key] = filteredStyle[key].apply(filteredStyle, params);
-    }
-
-    return filteredStyle;
-  };
-
-  var calculatedStyle = currentPage === page ? // for current (out)
-  _objectSpread({}, filterStyle(animation === null || animation === void 0 ? void 0 : (_animation$out = animation.out) === null || _animation$out === void 0 ? void 0 : _animation$out.style, currentProgress)) : currentPage === page - 1 ? // for next (in)
-  _objectSpread({}, filterStyle(animation === null || animation === void 0 ? void 0 : (_animation$in = animation["in"]) === null || _animation$in === void 0 ? void 0 : _animation$in.style, currentProgress)) : {
-    display: "none"
-  };
-  return /*#__PURE__*/_react["default"].createElement("div", {
-    style: calculatedStyle
-  }, children);
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
 };
-
-var _default = Animator;
-exports["default"] = _default;
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    Object.defineProperty(o, k2, { enumerable: true, get: function() { return m[k]; } });
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || function (mod) {
+    if (mod && mod.__esModule) return mod;
+    var result = {};
+    if (mod != null) for (var k in mod) if (k !== "default" && Object.prototype.hasOwnProperty.call(mod, k)) __createBinding(result, mod, k);
+    __setModuleDefault(result, mod);
+    return result;
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+var react_1 = __importStar(require("react"));
+var ScrollContext_1 = require("./ScrollContext");
+var Animator = function (_a) {
+    var _b, _c;
+    var children = _a.children, _d = _a.animation, animation = _d === void 0 ? {} : _d;
+    var _e = react_1.useContext(ScrollContext_1.ScrollContainerContext), currentPage = _e.currentPage, currentProgress = _e.currentProgress;
+    var page = react_1.useContext(ScrollContext_1.ScrollPageContext).page;
+    var filterStyle = function (style) {
+        if (style === void 0) { style = {}; }
+        var params = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            params[_i - 1] = arguments[_i];
+        }
+        var filteredStyle = __assign({}, style);
+        for (var key in filteredStyle)
+            if (typeof filteredStyle[key] === "function")
+                filteredStyle[key] = filteredStyle[key].apply(filteredStyle, params);
+        return filteredStyle;
+    };
+    var calculatedStyle = currentPage === page // for current (out)
+        ? __assign({}, filterStyle((_b = animation === null || animation === void 0 ? void 0 : animation.out) === null || _b === void 0 ? void 0 : _b.style, currentProgress)) : currentPage === page - 1 // for next (in)
+        ? __assign({}, filterStyle((_c = animation === null || animation === void 0 ? void 0 : animation.in) === null || _c === void 0 ? void 0 : _c.style, currentProgress)) : { display: "none" };
+    return react_1.default.createElement("div", { style: calculatedStyle }, children);
+};
+exports.default = Animator;
