@@ -1,22 +1,22 @@
-# 🎞 react-scroll-page ✨
-
+# 🎞 react-scroll-animator ✨
 
 
 ## **!!This project is practice yet!!**
 
 
+## Installing
+
+Using npm:
 
 ## Preview
 
 ![Preview Scroll Animation](_readme/scroll-animation.gif)
 
-
-
 ## Simple Docs
 
 ### Markup Example
 
-```html
+```jsx
 <ScrollContainer>
   <ScrollPage page={0}>
     <Animator animation={batch(Fade(), Sticky(), MoveOut(0, -200))}>

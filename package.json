@@ -1,15 +1,40 @@
 {
   "name": "react-scroll-animator",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
+  "version": "0.1.0-beta",
+  "homepage": "https://github.com/1000ship/react-scroll-animator",
+  "bugs": {
+    "email": "cjstjdgur1234@gmail.com",
+    "url": "https://github.com/1000ship/react-scroll-animator/issues"
+  },
+  "description": "Easy to make scroll animation with ReactJS",
+  "keywords": ["scroll", "animation", "react", "animator"],
+  "license": "MIT",
+  "author": {
+    "email": "cjstjdgur1234@gmail.com",
+    "name": "Seonghyeok Chun",
+    "url": "http://1000ship.me"
+  },
+  "main": "dist/ScrollAnimator.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/1000ship/react-scroll-animator"
+  },
+  "files": [
+    "dist",
+    "lib"
+  ],
+  "peerDependencies": {
+    "styled-components": "^5.2.1"
+  },
+
+  "private": false,
+  "devDependencies": {
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.1",
-    "styled-components": "^5.2.1",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
