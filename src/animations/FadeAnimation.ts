@@ -21,7 +21,7 @@ export const FadeIn = (from: number = 0, to: number = 1) => ({
   },
 });
 
-export const FadeOut = (from: number = 0, to: number = 1) => ({
+export const FadeOut = (from: number = 1, to: number = 0) => ({
   out: {
     style: {
       opacity: (value: number) => SimpleInterpolation(from, to, value),
