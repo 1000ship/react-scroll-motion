@@ -3,6 +3,7 @@ import { ScrollContainerContext } from "./ScrollContext";
 
 interface IProps {
   children: React.ReactNodeArray;
+  scrollParent: Window | HTMLElement
 }
 
 interface IState {
@@ -16,7 +17,8 @@ interface IState {
   currentProgress: number;
 }
 
-const ScrollAnimatorContainer = ({ children }: IProps) => {
+const ScrollAnimatorContainer = ({ children, scrollParent = window }: IProps) => {
+
   const [scrollData, setScrollData] = useState<IState>({
     currentY: 0, // 현재 스크롤 위치(px)
     viewportHeight: 0, // 화면 높이(px)
@@ -29,8 +31,8 @@ const ScrollAnimatorContainer = ({ children }: IProps) => {
   });
 
   const scrollEvent = useCallback(() => {
-    const currentY: number = window.pageYOffset;
-    const viewportHeight: number = window.innerHeight;
+    const currentY: number = scrollParent === window ? window.pageYOffset : (scrollParent as HTMLElement).scrollTop;
+    const viewportHeight: number = scrollParent === window ? window.innerHeight : (scrollParent as HTMLElement).clientHeight;
     const totalPage: number = children.length || 0;
     const totalHeight: number = totalPage * (viewportHeight - 1);
     const totalProgress: number = currentY / totalHeight; // 전체 페이지 진행률 0 ~ 1
@@ -51,14 +53,14 @@ const ScrollAnimatorContainer = ({ children }: IProps) => {
 
   useEffect(() => {
     scrollEvent();
-    window.addEventListener("scroll", scrollEvent);
-    return () => window.removeEventListener("scroll", scrollEvent);
+    scrollParent.addEventListener("scroll", scrollEvent);
+    return () => scrollParent.removeEventListener("scroll", scrollEvent);
   }, []);
 
   return (
     <div style={{ margin: 0, padding: 0 }}>
       <ScrollContainerContext.Provider value={scrollData}>
-        {children}
+          {children}
       </ScrollContainerContext.Provider>
     </div>
   );
