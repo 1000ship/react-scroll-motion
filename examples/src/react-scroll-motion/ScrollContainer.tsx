@@ -3,7 +3,7 @@ import { ScrollContainerContext } from "./ScrollContext";
 
 interface IProps {
   children: React.ReactNodeArray;
-  scrollParent: Window | HTMLElement
+  scrollParent: Window | HTMLElement;
 }
 
 interface IState {
@@ -18,8 +18,6 @@ interface IState {
 }
 
 const ScrollAnimatorContainer = ({ children, scrollParent = window }: IProps) => {
-
-  const ScrollContainer = useRef<HTMLDivElement>(null)
 
   const [scrollData, setScrollData] = useState<IState>({
     currentY: 0, // 현재 스크롤 위치(px)
@@ -56,13 +54,14 @@ const ScrollAnimatorContainer = ({ children, scrollParent = window }: IProps) =>
   useEffect(() => {
     scrollEvent();
     scrollParent.addEventListener("scroll", scrollEvent);
+    scrollParent.addEventListener("resize", scrollEvent);
     return () => scrollParent.removeEventListener("scroll", scrollEvent);
   }, []);
 
   return (
-    <div ref={ScrollContainer} style={{ margin: 0, padding: 0 }}>
+    <div style={{ margin: 0, padding: 0, height: scrollData.viewportHeight }}>
       <ScrollContainerContext.Provider value={scrollData}>
-          {children}
+        {children}
       </ScrollContainerContext.Provider>
     </div>
   );
