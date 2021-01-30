@@ -7,8 +7,9 @@ examples/node_modules
 # testing
 /coverage
 
-# production
+# build
 /dist
+/examples/build
 
 # misc
 .DS_Store

@@ -1,10 +1,9 @@
 {
-  "name": "react-scroll-animator-examples",
-  "version": "0.1.0-beta",
-  "homepage": "https://github.com/1000ship/react-scroll-animator",
+  "name": "react-scroll-motion-examples",
+  "homepage": "https://1000ship.github.io/react-scroll-motion/",
   "bugs": {
     "email": "cjstjdgur1234@gmail.com",
-    "url": "https://github.com/1000ship/react-scroll-animator/issues"
+    "url": "https://github.com/1000ship/react-scroll-motion/issues"
   },
   "description": "Easy to make scroll animation with ReactJS",
   "keywords": [
@@ -22,7 +21,7 @@
   "main": "dist/ScrollAnimator.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/1000ship/react-scroll-animator",
+    "url": "https://github.com/1000ship/react-scroll-motion",
     "directory": "examples"
   },
   "private": false,
@@ -30,6 +29,7 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "gh-pages": "^3.1.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.1",
@@ -39,7 +39,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
