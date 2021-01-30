@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/react-scroll-animation/static/css/main.0d183a93.chunk.css",
-    "main.js": "/react-scroll-animation/static/js/main.dadadb9f.chunk.js",
-    "main.js.map": "/react-scroll-animation/static/js/main.dadadb9f.chunk.js.map",
-    "runtime-main.js": "/react-scroll-animation/static/js/runtime-main.7033bbf0.js",
-    "runtime-main.js.map": "/react-scroll-animation/static/js/runtime-main.7033bbf0.js.map",
-    "static/js/2.0df3605f.chunk.js": "/react-scroll-animation/static/js/2.0df3605f.chunk.js",
-    "static/js/2.0df3605f.chunk.js.map": "/react-scroll-animation/static/js/2.0df3605f.chunk.js.map",
-    "static/js/3.82559360.chunk.js": "/react-scroll-animation/static/js/3.82559360.chunk.js",
-    "static/js/3.82559360.chunk.js.map": "/react-scroll-animation/static/js/3.82559360.chunk.js.map",
-    "index.html": "/react-scroll-animation/index.html",
-    "static/css/main.0d183a93.chunk.css.map": "/react-scroll-animation/static/css/main.0d183a93.chunk.css.map",
-    "static/js/2.0df3605f.chunk.js.LICENSE.txt": "/react-scroll-animation/static/js/2.0df3605f.chunk.js.LICENSE.txt"
+    "main.css": "/react-scroll-motion/static/css/main.0d183a93.chunk.css",
+    "main.js": "/react-scroll-motion/static/js/main.dadadb9f.chunk.js",
+    "main.js.map": "/react-scroll-motion/static/js/main.dadadb9f.chunk.js.map",
+    "runtime-main.js": "/react-scroll-motion/static/js/runtime-main.f668c0df.js",
+    "runtime-main.js.map": "/react-scroll-motion/static/js/runtime-main.f668c0df.js.map",
+    "static/js/2.0df3605f.chunk.js": "/react-scroll-motion/static/js/2.0df3605f.chunk.js",
+    "static/js/2.0df3605f.chunk.js.map": "/react-scroll-motion/static/js/2.0df3605f.chunk.js.map",
+    "static/js/3.82559360.chunk.js": "/react-scroll-motion/static/js/3.82559360.chunk.js",
+    "static/js/3.82559360.chunk.js.map": "/react-scroll-motion/static/js/3.82559360.chunk.js.map",
+    "index.html": "/react-scroll-motion/index.html",
+    "static/css/main.0d183a93.chunk.css.map": "/react-scroll-motion/static/css/main.0d183a93.chunk.css.map",
+    "static/js/2.0df3605f.chunk.js.LICENSE.txt": "/react-scroll-motion/static/js/2.0df3605f.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.7033bbf0.js",
+    "static/js/runtime-main.f668c0df.js",
     "static/js/2.0df3605f.chunk.js",
     "static/css/main.0d183a93.chunk.css",
     "static/js/main.dadadb9f.chunk.js"
