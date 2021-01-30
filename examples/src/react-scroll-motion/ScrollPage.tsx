@@ -15,6 +15,8 @@ const ScrollPage = ({ children, page, debugBorder = false }: IProps) => {
     height: viewportHeight,
     position: "relative",
     boxSizing: "border-box",
+    scrollSnapAlign: "center",
+    overflow: "hidden",
     ...(debugBorder ? { border: "1px solid red" } : {}),
   };
   return (
