@@ -1,9 +1,10 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { ScrollContainerContext } from "./ScrollContext";
+import environment from "./utils/environment";
 
 interface IProps {
   children: React.ReactNodeArray;
-  scrollParent: Window | HTMLElement
+  scrollParent: Window | HTMLElement;
 }
 
 interface IState {
@@ -32,7 +33,7 @@ const ScrollAnimatorContainer = ({ children, scrollParent = window }: IProps) =>
 
   const scrollEvent = useCallback(() => {
     const currentY: number = scrollParent === window ? window.pageYOffset : (scrollParent as HTMLElement).scrollTop;
-    const viewportHeight: number = scrollParent === window ? window.innerHeight : (scrollParent as HTMLElement).clientHeight;
+    const viewportHeight: number = scrollParent === window ? environment.height : (scrollParent as HTMLElement).clientHeight;
     const totalPage: number = children.length || 0;
     const totalHeight: number = totalPage * (viewportHeight - 1);
     const totalProgress: number = currentY / totalHeight; // 전체 페이지 진행률 0 ~ 1
@@ -54,13 +55,14 @@ const ScrollAnimatorContainer = ({ children, scrollParent = window }: IProps) =>
   useEffect(() => {
     scrollEvent();
     scrollParent.addEventListener("scroll", scrollEvent);
+    scrollParent.addEventListener("resize", scrollEvent);
     return () => scrollParent.removeEventListener("scroll", scrollEvent);
   }, []);
 
   return (
-    <div style={{ margin: 0, padding: 0 }}>
+    <div style={{ margin: 0, padding: 0, userSelect: "none" }}>
       <ScrollContainerContext.Provider value={scrollData}>
-          {children}
+        {children}
       </ScrollContainerContext.Provider>
     </div>
   );
