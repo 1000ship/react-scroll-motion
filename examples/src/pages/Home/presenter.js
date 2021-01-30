@@ -35,22 +35,22 @@ const Presenter = () => {
     <ScrollContainer>
       <ScrollPage page={0}>
         <Animator animation={batch(Fade(), Sticky(), MoveOut(0, -200))}>
-          <span style={{ fontSize: "2em" }}>Let't me show you scroll animation 😀</span>
+          <span style={{ fontSize: "30px" }}>Let't me show you scroll animation 😀</span>
         </Animator>
       </ScrollPage>
       <ScrollPage page={1}>
         <Animator animation={ZoomInScrollOut}>
-          <span style={{ fontSize: "3em" }}>I'm FadeUpScrollOut ✨</span>
+          <span style={{ fontSize: "40px" }}>I'm FadeUpScrollOut ✨</span>
         </Animator>
       </ScrollPage>
       <ScrollPage page={2}>
         <Animator animation={FadeUp}>
-          <span style={{ fontSize: "3em" }}>I'm FadeUp ⛅️</span>
+          <span style={{ fontSize: "40px" }}>I'm FadeUp ⛅️</span>
         </Animator>
       </ScrollPage>
       <ScrollPage page={3}>
         <div style={FlexCenterStyle}>
-          <span style={{ fontSize: "3em" }}>
+          <span style={{ fontSize: "40px" }}>
             <Animator animation={MoveIn(-1000, 0)}>Hello Guys 👋🏻</Animator>
             <Animator animation={MoveIn(1000, 0)}>Nice to meet you 🙋🏻‍♀️</Animator>- I'm Seonghyeok -
             <Animator animation={MoveOut(1000, 0)}>Good bye ✋🏻</Animator>
@@ -60,8 +60,8 @@ const Presenter = () => {
       </ScrollPage>
       <ScrollPage page={4}>
         <Animator animation={batch(Fade(), Sticky())}>
-          <span style={{ fontSize: "3em" }}>Done</span><br/>
-          <span style={{ fontSize: "2em" }}>
+          <span style={{ fontSize: "40px" }}>Done</span><br/>
+          <span style={{ fontSize: "30px" }}>
             There's FadeAnimation, MoveAnimation, StickyAnimation, ZoomAnimation
           </span>
         </Animator>
