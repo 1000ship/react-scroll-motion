@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { ScrollContainerContext } from "./ScrollContext";
+import environment from "./utils/environment";
 
 interface IProps {
   children: React.ReactNodeArray;
@@ -32,7 +33,7 @@ const ScrollAnimatorContainer = ({ children, scrollParent = window }: IProps) =>
 
   const scrollEvent = useCallback(() => {
     const currentY: number = scrollParent === window ? window.pageYOffset : (scrollParent as HTMLElement).scrollTop;
-    const viewportHeight: number = scrollParent === window ? window.screen.availHeight : (scrollParent as HTMLElement).clientHeight;
+    const viewportHeight: number = scrollParent === window ? environment.height : (scrollParent as HTMLElement).clientHeight;
     const totalPage: number = children.length || 0;
     const totalHeight: number = totalPage * (viewportHeight - 1);
     const totalProgress: number = currentY / totalHeight; // 전체 페이지 진행률 0 ~ 1
