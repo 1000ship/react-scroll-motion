@@ -29,7 +29,9 @@ yarn add react-scroll-motion
 
 ## Code Preview
 
-![Preview Scroll Animation](_readme/scroll-animation.gif)
+| PC                                                           | Mobile                                                       |
+| ------------------------------------------------------------ | ------------------------------------------------------------ |
+| <img src="_readme/example-pc.gif" alt="Preview PC" width=434 height=320/> | <img src="_readme/example-mobile.gif" alt="Preview Mobile" width=148 height=320/> |
 
 - [View on deployed example](https://1000ship.github.io/react-scroll-motion/)
 
