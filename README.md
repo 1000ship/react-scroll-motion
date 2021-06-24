@@ -44,7 +44,7 @@ const FadeUp = batch(Fade(), Move(), Sticky());
 <ScrollContainer>
   <ScrollPage page={0}>
     <Animator animation={batch(Fade(), Sticky(), MoveOut(0, -200))}>
-      <span style={{ fontSize: "30px" }}>Let't me show you scroll animation 😀</span>
+      <span style={{ fontSize: "30px" }}>Let me show you scroll animation 😀</span>
     </Animator>
   </ScrollPage>
   <ScrollPage page={1}>
