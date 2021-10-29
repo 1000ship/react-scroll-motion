@@ -58,7 +58,7 @@ const FadeUp = batch(Fade(), Move(), Sticky());
     </Animator>
   </ScrollPage>
   <ScrollPage page={3}>
-    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" } >
+    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }} >
       <span style={{ fontSize: "40px" }}>
         <Animator animation={MoveIn(-1000, 0)}>Hello Guys 👋🏻</Animator>
         <Animator animation={MoveIn(1000, 0)}>Nice to meet you 🙋🏻‍♀️</Animator>- I'm Seonghyeok -
