@@ -3,6 +3,7 @@ import { ScrollContainerContext } from "./ScrollContext";
 import environment from "./utils/environment";
 
 interface IProps {
+  snap: string;
   children: React.ReactNodeArray;
   scrollParent: Window | HTMLElement;
 }
@@ -18,7 +19,7 @@ interface IState {
   currentProgress: number;
 }
 
-const ScrollAnimatorContainer = ({ children, scrollParent = window }: IProps) => {
+const ScrollAnimatorContainer = ({ snap = 'none', children, scrollParent = window }: IProps) => {
 
   const [scrollData, setScrollData] = useState<IState>({
     currentY: 0, // 현재 스크롤 위치(px)
@@ -31,7 +32,13 @@ const ScrollAnimatorContainer = ({ children, scrollParent = window }: IProps) =>
     currentProgress: 0, // 현재 페이지 진행률 (%)
   });
 
+  const doSnap: boolean = snap != 'none';
+  var scrollTimer: ReturnType<typeof setTimeout>;
+
   const scrollEvent = useCallback(() => {
+    if (snap && scrollTimer)
+      clearTimeout(scrollTimer);
+
     const currentY: number = scrollParent === window ? window.pageYOffset : (scrollParent as HTMLElement).scrollTop;
     const viewportHeight: number = scrollParent === window ? environment.height : (scrollParent as HTMLElement).clientHeight;
     const totalPage: number = children.length || 0;
@@ -50,6 +57,22 @@ const ScrollAnimatorContainer = ({ children, scrollParent = window }: IProps) =>
       currentPage,
       currentProgress,
     } as IState);
+    
+    if (doSnap) {
+      scrollTimer = setTimeout(() => {
+        const newCurrentPage = Math.round(realPage);
+        let newCurrentY = currentY;
+
+        if (snap === 'mandatory' || Math.abs(newCurrentPage - realPage) < 0.3)
+          newCurrentY = newCurrentPage * viewportHeight;
+        
+        if (newCurrentY != currentY)
+          window.scrollTo({
+            top: newCurrentY,
+            behavior: 'smooth'
+          });
+      }, 50);
+    }
   }, []);
 
   useEffect(() => {
