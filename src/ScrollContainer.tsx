@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { ScrollContainerContext } from "./ScrollContext";
-import environment from "./utils/environment";
+import { ScrollContainerContext } from "react-scroll-motion";
+import environment from "./environment";
 
 interface IProps {
   snap: string;
@@ -32,12 +32,12 @@ const ScrollAnimatorContainer = ({ snap = 'none', children, scrollParent = windo
     currentProgress: 0, // 현재 페이지 진행률 (%)
   });
 
-  const doSnap: boolean = snap != 'none';
-  var scrollTimer: ReturnType<typeof setTimeout>;
+  const doSnap: boolean = snap !== 'none';
+  const scrollTimer = useRef<ReturnType<typeof setTimeout>>();
 
   const scrollEvent = useCallback(() => {
-    if (snap && scrollTimer)
-      clearTimeout(scrollTimer);
+    if (snap && scrollTimer.current)
+      clearTimeout(scrollTimer.current);
 
     const currentY: number = scrollParent === window ? window.pageYOffset : (scrollParent as HTMLElement).scrollTop;
     const viewportHeight: number = scrollParent === window ? environment.height : (scrollParent as HTMLElement).clientHeight;
@@ -59,28 +59,28 @@ const ScrollAnimatorContainer = ({ snap = 'none', children, scrollParent = windo
     } as IState);
     
     if (doSnap) {
-      scrollTimer = setTimeout(() => {
+      scrollTimer.current = setTimeout(() => {
         const newCurrentPage = Math.round(realPage);
         let newCurrentY = currentY;
 
         if (snap === 'mandatory' || Math.abs(newCurrentPage - realPage) < 0.3)
           newCurrentY = newCurrentPage * viewportHeight;
         
-        if (newCurrentY != currentY)
+        if (newCurrentY !== currentY)
           window.scrollTo({
             top: newCurrentY,
             behavior: 'smooth'
           });
       }, 50);
     }
-  }, []);
+  }, [children.length, doSnap, scrollParent, snap]);
 
   useEffect(() => {
     scrollEvent();
     scrollParent.addEventListener("scroll", scrollEvent);
     scrollParent.addEventListener("resize", scrollEvent);
     return () => scrollParent.removeEventListener("scroll", scrollEvent);
-  }, []);
+  }, [scrollEvent, scrollParent]);
 
   return (
     <div style={{ margin: 0, padding: 0, userSelect: "none" }}>
