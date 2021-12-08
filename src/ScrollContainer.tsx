@@ -3,7 +3,7 @@ import { ScrollContainerContext } from "./ScrollContext";
 import environment from "./utils/environment";
 
 interface IProps {
-  snap: string;
+  snap: 'none' | 'proximity' | 'mandatory';
   children: React.ReactNodeArray;
   scrollParent: Window | HTMLElement;
 }
