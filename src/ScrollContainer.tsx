@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { ScrollContainerContext } from "react-scroll-motion";
-import environment from "./environment";
+import { ScrollContainerContext } from "./ScrollContext";
+import environment from "./utils/environment";
 
 interface IProps {
   snap: string;
