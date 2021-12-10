@@ -7,7 +7,7 @@
 ### Markup Example
 
 ```jsx
-<ScrollContainer>
+<ScrollContainer snap="mandatory">
   <ScrollPage page={0}>
     <Animator animation={batch(Fade(), Sticky(), MoveOut(0, -200))}>
       <MediumText>Let't me show you scroll animation 😀</MediumText>
@@ -17,6 +17,8 @@
 ```
 
 - `ScrollContainer` must be root
+
+- `ScrollContainer`'s children snap option is optional (`'none' | 'mandatory' | 'proximity'`)
 
 - `ScrollContainer`'s children must be `ScrollPage`
 
