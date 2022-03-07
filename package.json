@@ -1,9 +1,9 @@
 {
   "name": "react-scroll-motion",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "homepage": "https://github.com/1000ship/react-scroll-motion",
   "bugs": {
-    "email": "cjstjdgur1234@gmail.com",
+    "email": "dev.1000ship@gmail.com",
     "url": "https://github.com/1000ship/react-scroll-motion/issues"
   },
   "description": "Easy to make scroll animation with ReactJS",
@@ -16,8 +16,8 @@
   ],
   "license": "MIT",
   "author": {
-    "email": "cjstjdgur1234@gmail.com",
-    "name": "Seonghyeok Chun",
+    "email": "dev.1000ship@gmail.com",
+    "name": "Dante Chun",
     "url": "http://1000ship.me"
   },
   "main": "dist/index.js",
