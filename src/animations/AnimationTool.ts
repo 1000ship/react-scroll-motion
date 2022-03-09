@@ -5,7 +5,7 @@ type StyleValue = string | number | Function
 const callIfFunc = (value: StyleValue, ...params: any) =>
   typeof value === "function" ? value(...params) : value;
 
-export const batch = (...animations: [IAnimation]) => {
+export const batch = (...animations: IAnimation[]) => {
   const batched: IAnimation = { in: { style: {} }, out: { style: {} } };
   const batchedTransform: {
     in: (StyleValue)[];
