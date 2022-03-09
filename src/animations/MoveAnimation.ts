@@ -1,3 +1,4 @@
+import { IAnimation } from "../utils/interface";
 import { SimpleInterpolation } from "../utils/interpolation";
 
 export const Move = (
@@ -5,39 +6,51 @@ export const Move = (
   dy: number = 100,
   outDx: number | null = null,
   outDy: number | null = -100
-) => ({
+): IAnimation => ({
   in: {
     style: {
       transform: (value: number) =>
-        `translate(${SimpleInterpolation(dx, 0, value)}px, ${SimpleInterpolation(dy, 0, value)}px)`,
-    },
-  },
-  out: {
-    style: {
-      transform: (value: number) =>
-        `translate(${SimpleInterpolation(0, outDx || dx, value)}px, ${SimpleInterpolation(
+        `translate(${SimpleInterpolation(
+          dx,
           0,
-          outDy || dy,
           value
-        )}px)`,
+        )}px, ${SimpleInterpolation(dy, 0, value)}px)`,
     },
   },
-});
-
-export const MoveIn = (dx: number = 0, dy: number = 100) => ({
-  in: {
-    style: {
-      transform: (value: number) =>
-        `translate(${SimpleInterpolation(dx, 0, value)}px, ${SimpleInterpolation(dy, 0, value)}px)`,
-    },
-  },
-});
-
-export const MoveOut = (dx: number = 0, dy: number = -100) => ({
   out: {
     style: {
       transform: (value: number) =>
-        `translate(${SimpleInterpolation(0, dx, value)}px, ${SimpleInterpolation(0, dy, value)}px)`,
+        `translate(${SimpleInterpolation(
+          0,
+          outDx || dx,
+          value
+        )}px, ${SimpleInterpolation(0, outDy || dy, value)}px)`,
+    },
+  },
+});
+
+export const MoveIn = (dx: number = 0, dy: number = 100): IAnimation => ({
+  in: {
+    style: {
+      transform: (value: number) =>
+        `translate(${SimpleInterpolation(
+          dx,
+          0,
+          value
+        )}px, ${SimpleInterpolation(dy, 0, value)}px)`,
+    },
+  },
+});
+
+export const MoveOut = (dx: number = 0, dy: number = -100): IAnimation => ({
+  out: {
+    style: {
+      transform: (value: number) =>
+        `translate(${SimpleInterpolation(
+          0,
+          dx,
+          value
+        )}px, ${SimpleInterpolation(0, dy, value)}px)`,
     },
   },
 });

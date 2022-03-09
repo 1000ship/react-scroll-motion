@@ -11,3 +11,13 @@
 - Correct some mistype
 - Create update notes
 
+## version 0.2.3
+
+- Fix typescript error on `Batch`
+- Fix mis-typo in README
+- Fix CSS styles on `scroll-snap`
+
+
+## version 0.2.4
+
+- Fix lots of typescript error

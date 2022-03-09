@@ -1,13 +1,14 @@
 import React, { useContext } from "react";
 import { ScrollPageContext, ScrollContainerContext } from "./ScrollContext";
 
-interface IProps {
+interface ScrollPageProps {
   children: React.ReactNode;
   page: number;
-  debugBorder: boolean;
+  debugBorder?: boolean;
 }
 
-const ScrollPage = ({ children, page, debugBorder = false }: IProps) => {
+const ScrollPage = (props: ScrollPageProps) => {
+  const { children, page, debugBorder = false } = props;
   const { viewportHeight } = useContext(ScrollContainerContext);
   const style: React.CSSProperties = {
     margin: 0,
@@ -21,7 +22,9 @@ const ScrollPage = ({ children, page, debugBorder = false }: IProps) => {
   };
   return (
     <div style={style}>
-      <ScrollPageContext.Provider value={{ page }}>{children}</ScrollPageContext.Provider>
+      <ScrollPageContext.Provider value={{ page }}>
+        {children}
+      </ScrollPageContext.Provider>
     </div>
   );
 };

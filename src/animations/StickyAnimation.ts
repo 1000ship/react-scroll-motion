@@ -1,6 +1,7 @@
 import environment from "../utils/environment";
+import { IAnimation } from "../utils/interface";
 
-export const Sticky = (left: number = 50, top: number = 50) => ({
+export const Sticky = (left: number = 50, top: number = 50): IAnimation => ({
   in: {
     style: {
       left: () => `${(left * environment.width) / 100}px`,
@@ -19,7 +20,7 @@ export const Sticky = (left: number = 50, top: number = 50) => ({
   },
 });
 
-export const StickyIn = (left: number = 50, top: number = 50) => ({
+export const StickyIn = (left: number = 50, top: number = 50): IAnimation => ({
   in: {
     style: {
       left: () => `${(left * environment.width) / 100}px`,
@@ -38,7 +39,7 @@ export const StickyIn = (left: number = 50, top: number = 50) => ({
   },
 });
 
-export const StickyOut = (left: number = 50, top: number = 50) => ({
+export const StickyOut = (left: number = 50, top: number = 50): IAnimation => ({
   in: {
     style: {
       left: `${(left * environment.width) / 100}px`,

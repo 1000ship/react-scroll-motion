@@ -1,13 +1,13 @@
-import React, { useContext, useState } from "react";
-import { IAnimation, IStyle } from "./utils/interface";
+import React, { useContext } from "react";
 import { ScrollContainerContext, ScrollPageContext } from "./ScrollContext";
+import { IAnimation, IStyle } from "./utils/interface";
 
 interface IProp {
-  children: React.ReactNode
-  animation: IAnimation
+  children: React.ReactNode;
+  animation: IAnimation;
 }
 
-const Animator = ({ children, animation = {} } : IProp) => {
+const Animator = ({ children, animation = {} }: IProp) => {
   const { currentPage, currentProgress } = useContext(ScrollContainerContext);
 
   const { page } = useContext(ScrollPageContext);

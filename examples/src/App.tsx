@@ -2,40 +2,29 @@ import React from "react";
 import {
   Animator,
   ScrollContainer,
-  ScrollContainerContext,
-  ScrollPageContext,
   ScrollPage,
   batch,
   Fade,
   FadeIn,
-  FadeOut,
   Move,
   MoveIn,
   MoveOut,
   Sticky,
   StickyIn,
-  StickyOut,
-  Zoom,
   ZoomIn,
-  ZoomOut,
-} from "../../react-scroll-motion";
+} from "react-scroll-motion";
 
-const FlexCenterStyle = {
-  display: "flex",
-  justifyContent: "center",
-  alignItems: "center",
-  height: "100%",
-};
+const ZoomInScrollOut = batch(StickyIn(), FadeIn(), ZoomIn());
+const FadeUp = batch(Fade(), Move(), Sticky());
 
-const Presenter = () => {
-  const ZoomInScrollOut = batch(StickyIn(), FadeIn(), ZoomIn());
-  const FadeUp = batch(Fade(), Move(), Sticky());
-
+function App() {
   return (
     <ScrollContainer>
       <ScrollPage page={0}>
         <Animator animation={batch(Fade(), Sticky(), MoveOut(0, -200))}>
-          <span style={{ fontSize: "30px" }}>Let's me show you scroll animation 😀</span>
+          <span style={{ fontSize: "30px" }}>
+            Let me show you scroll animation 😀
+          </span>
         </Animator>
       </ScrollPage>
       <ScrollPage page={1}>
@@ -49,10 +38,18 @@ const Presenter = () => {
         </Animator>
       </ScrollPage>
       <ScrollPage page={3}>
-        <div style={FlexCenterStyle}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "100%",
+          }}
+        >
           <span style={{ fontSize: "40px" }}>
             <Animator animation={MoveIn(-1000, 0)}>Hello Guys 👋🏻</Animator>
-            <Animator animation={MoveIn(1000, 0)}>Nice to meet you 🙋🏻‍♀️</Animator>- I'm Seonghyeok -
+            <Animator animation={MoveIn(1000, 0)}>Nice to meet you 🙋🏻‍♀️</Animator>
+            - I'm Seonghyeok -
             <Animator animation={MoveOut(1000, 0)}>Good bye ✋🏻</Animator>
             <Animator animation={MoveOut(-1000, 0)}>See you 💛</Animator>
           </span>
@@ -60,7 +57,8 @@ const Presenter = () => {
       </ScrollPage>
       <ScrollPage page={4}>
         <Animator animation={batch(Fade(), Sticky())}>
-          <span style={{ fontSize: "40px" }}>Done</span><br/>
+          <span style={{ fontSize: "40px" }}>Done</span>
+          <br />
           <span style={{ fontSize: "30px" }}>
             There's FadeAnimation, MoveAnimation, StickyAnimation, ZoomAnimation
           </span>
@@ -68,6 +66,6 @@ const Presenter = () => {
       </ScrollPage>
     </ScrollContainer>
   );
-};
+}
 
-export default Presenter;
+export default App;

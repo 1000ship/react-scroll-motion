@@ -1,5 +1,5 @@
 export interface IStyle {
-  [key: string]: string | number | ((value: number) => string);
+  [key: string]: string | number | ((value: number) => string | number);
 }
 
 export interface IAnimation {
