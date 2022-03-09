@@ -26,3 +26,7 @@
 
 - Fix NextJS error
   - `ReferenceError: navigator is not defined`
+
+## version 0.2.6
+
+- Remove unnecessary files on npm.js publishing
