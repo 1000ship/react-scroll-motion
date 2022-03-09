@@ -21,3 +21,8 @@
 ## version 0.2.4
 
 - Fix lots of typescript error
+
+## version 0.2.5
+
+- Fix NextJS error
+  - `ReferenceError: navigator is not defined`
