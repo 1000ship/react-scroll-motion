@@ -27,11 +27,7 @@
     "url": "https://github.com/1000ship/react-scroll-motion"
   },
   "files": [
-    "dist",
-    "!examples/",
-    "!node_modules/",
-    "!_readme/",
-    "!*.md"
+    "dist"
   ],
   "private": false,
   "scripts": {

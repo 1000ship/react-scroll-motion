@@ -1,6 +1,5 @@
 # dependencies
 /node_modules
-examples/node_modules
 /.pnp
 .pnp.js
 
@@ -9,7 +8,7 @@ examples/node_modules
 
 # build
 /dist
-/examples/build
+/build
 
 # misc
 .DS_Store
