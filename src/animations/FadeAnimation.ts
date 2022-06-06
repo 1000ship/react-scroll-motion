@@ -1,7 +1,7 @@
-import { IAnimation } from "../utils/interface";
-import { SimpleInterpolation } from "../utils/interpolation";
+import { Animation } from "../types";
+import { SimpleInterpolation } from "../utils";
 
-export const Fade = (from: number = 0, to: number = 1): IAnimation => ({
+export const Fade = (from: number = 0, to: number = 1): Animation => ({
   in: {
     style: {
       opacity: (value: number) => SimpleInterpolation(from, to, value),
@@ -14,7 +14,7 @@ export const Fade = (from: number = 0, to: number = 1): IAnimation => ({
   },
 });
 
-export const FadeIn = (from: number = 0, to: number = 1): IAnimation => ({
+export const FadeIn = (from: number = 0, to: number = 1): Animation => ({
   in: {
     style: {
       opacity: (value: number) => SimpleInterpolation(from, to, value),
@@ -22,7 +22,7 @@ export const FadeIn = (from: number = 0, to: number = 1): IAnimation => ({
   },
 });
 
-export const FadeOut = (from: number = 0, to: number = 1): IAnimation => ({
+export const FadeOut = (from: number = 0, to: number = 1): Animation => ({
   out: {
     style: {
       opacity: (value: number) => SimpleInterpolation(from, to, value),

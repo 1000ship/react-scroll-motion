@@ -1,12 +1,12 @@
-import { IAnimation } from "../utils/interface";
+import { Animation } from "../types";
 
 type StyleValue = string | number | Function;
 
 const callIfFunc = (value: StyleValue, ...params: any) =>
   typeof value === "function" ? value(...params) : value;
 
-export const batch = (...animations: IAnimation[]): IAnimation => {
-  const batched: IAnimation = { in: { style: {} }, out: { style: {} } };
+export const batch = (...animations: Animation[]): Animation => {
+  const batched: Animation = { in: { style: {} }, out: { style: {} } };
   const batchedTransform: {
     in: StyleValue[];
     out: StyleValue[];

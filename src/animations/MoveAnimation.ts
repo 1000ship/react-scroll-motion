@@ -1,12 +1,12 @@
-import { IAnimation } from "../utils/interface";
-import { SimpleInterpolation } from "../utils/interpolation";
+import { Animation } from "../types";
+import { SimpleInterpolation } from "../utils";
 
 export const Move = (
   dx: number = 0,
   dy: number = 100,
   outDx: number | null = null,
   outDy: number | null = -100
-): IAnimation => ({
+): Animation => ({
   in: {
     style: {
       transform: (value: number) =>
@@ -29,7 +29,7 @@ export const Move = (
   },
 });
 
-export const MoveIn = (dx: number = 0, dy: number = 100): IAnimation => ({
+export const MoveIn = (dx: number = 0, dy: number = 100): Animation => ({
   in: {
     style: {
       transform: (value: number) =>
@@ -42,7 +42,7 @@ export const MoveIn = (dx: number = 0, dy: number = 100): IAnimation => ({
   },
 });
 
-export const MoveOut = (dx: number = 0, dy: number = -100): IAnimation => ({
+export const MoveOut = (dx: number = 0, dy: number = -100): Animation => ({
   out: {
     style: {
       transform: (value: number) =>

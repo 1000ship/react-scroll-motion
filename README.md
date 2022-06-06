@@ -27,47 +27,72 @@ npm install react-scroll-motion
 yarn add react-scroll-motion
 ```
 
-## Code Preview
+## Preview
 
 | PC                                                           | Mobile                                                       |
 | ------------------------------------------------------------ | ------------------------------------------------------------ |
 | <img src="_readme/example-pc.gif" alt="Preview PC" width=434 height=320/> | <img src="_readme/example-mobile.gif" alt="Preview Mobile" width=148 height=320/> |
 
 - [View on deployed example](https://1000ship.github.io/react-scroll-motion/)
+  
+  
+## Import components/functions
+
+### ReactJS
 
 ```jsx
-import { Animator, ScrollContainer, ScrollPage, batch, Fade, FadeIn, Move, MoveIn, MoveOut, Sticky, StickyIn, ZoomIn } from "react-scroll-motion";
+import { Animator, ScrollContainer, ScrollPage, batch, Fade, FadeIn, FadeOut, Move, MoveIn, MoveOut, Sticky, StickyIn, StickyOut, Zoom, ZoomIn, ZoomOut } from "react-scroll-motion";
+```
 
+- Support up to 18 version
+
+### NextJS
+```jsx
+import dynamic from "next/dynamic";
+const Animator = dynamic(
+  import("react-scroll-motion").then((it) => it.Animator),
+  { ssr: false }
+);
+
+
+import { ScrollContainer, ScrollPage, batch, Fade, FadeIn, FadeOut, Move, MoveIn, MoveOut, Sticky, StickyIn, StickyOut, Zoom, ZoomIn, ZoomOut } from "react-scroll-motion";
+```
+- **Check this out especially if you use *NextJS***
+- Please import `Animator` component with `next/dynamic` like upper code, when using NextJS
+
+## Example Code
+```jsx
 const ZoomInScrollOut = batch(StickyIn(), FadeIn(), ZoomIn());
 const FadeUp = batch(Fade(), Move(), Sticky());
 
 <ScrollContainer>
-  <ScrollPage page={0}>
+  <ScrollPage>
     <Animator animation={batch(Fade(), Sticky(), MoveOut(0, -200))}>
       <span style={{ fontSize: "30px" }}>Let me show you scroll animation 😀</span>
     </Animator>
   </ScrollPage>
-  <ScrollPage page={1}>
+  <ScrollPage>
     <Animator animation={ZoomInScrollOut}>
       <span style={{ fontSize: "40px" }}>I'm FadeUpScrollOut ✨</span>
     </Animator>
   </ScrollPage>
-  <ScrollPage page={2}>
+  <ScrollPage>
     <Animator animation={FadeUp}>
       <span style={{ fontSize: "40px" }}>I'm FadeUp ⛅️</span>
     </Animator>
   </ScrollPage>
-  <ScrollPage page={3}>
+  <ScrollPage>
     <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100%" }} >
       <span style={{ fontSize: "40px" }}>
         <Animator animation={MoveIn(-1000, 0)}>Hello Guys 👋🏻</Animator>
-        <Animator animation={MoveIn(1000, 0)}>Nice to meet you 🙋🏻‍♀️</Animator>- I'm Seonghyeok -
+        <Animator animation={MoveIn(1000, 0)}>Nice to meet you 🙋🏻‍♀️</Animator>
+        - I'm Dante Chun -
         <Animator animation={MoveOut(1000, 0)}>Good bye ✋🏻</Animator>
         <Animator animation={MoveOut(-1000, 0)}>See you 💛</Animator>
       </span>
     </div>
   </ScrollPage>
-  <ScrollPage page={4}>
+  <ScrollPage>
     <Animator animation={batch(Fade(), Sticky())}>
       <span style={{ fontSize: "40px" }}>Done</span>
       <br/>
@@ -79,14 +104,72 @@ const FadeUp = batch(Fade(), Move(), Sticky());
 </ScrollContainer>
 ```
 
+## Make custom animation
+
+Let's make spin animation 😉
+
+<img src="_readme/custom-animation.webp" alt="Custom spinning animation" width="400" height="400" />
+
+
+### Javascript
+```jsx
+const Spin = (cycle) =>
+  ({
+    in: {
+      style: {
+        transform: (p) => `rotate(${p * 360 * cycle}deg)`,
+      },
+    },
+    out: {
+      style: {
+        transform: (p) => `rotate(${p * 360 * cycle}deg)`,
+      },
+    },
+  });
+```
+
+
+### Typescript
+```tsx
+import { Animation } from "react-scroll-motion";
+
+const Spin = (cycle: number) =>
+  ({
+    in: {
+      style: {
+        transform: (p) => `rotate(${p * 360 * cycle}deg)`,
+      },
+    },
+    out: {
+      style: {
+        transform: (p) => `rotate(${p * 360 * cycle}deg)`,
+      },
+    },
+  } as Animation);
+```
+
+```jsx
+<ScrollContainer>
+  <ScrollPage>
+    // Your custom animation also can be batched!
+    <Animator animation={batch(Sticky(), Fade(), Spin(3))}>
+      <h1 style={{ fontSize: 50 }}>Hello!!!</h1>
+    </Animator>
+  </ScrollPage>
+  <ScrollPage>
+    ...
+  </ScrollPage>
+</ScrollContainer>
+```
+
 ## Notes & References
 
-- [Simple Docs (BETA)](_readme/docs.md)
+- [Simple Docs](_readme/docs.md)
 - [Update Notes](_readme/update.md)
 
 ## Author
 
-👤 **Seonghyeok Chun**
+👤 **Dante Chun**
 
 * Website: 1000ship.me
 * Github: [@1000ship](https://github.com/1000ship)
@@ -101,8 +184,5 @@ Give a ⭐️ if this project helped you!
 
 ## 📝 License
 
-Copyright © 2021 [Seonghyeok Chun](https://github.com/1000ship).<br />
+Copyright © 2021 [Dante Chun](https://github.com/1000ship).<br />
 This project is [MIT](https://github.com/1000ship/react-scroll-motion/blob/master/LICENSE) licensed.
-
-***
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_

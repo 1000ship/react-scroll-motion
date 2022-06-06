@@ -30,3 +30,12 @@
 ## version 0.2.6
 
 - Remove unnecessary files on npm.js publishing
+
+## version 0.3.0
+
+- Support ReactJS 18
+- Update README and fix tons of things for supporting NextJS
+- Change types/interface names
+  - `IAnimation` to `Animation`
+  - `IStyle` to `Style`
+- `page` props is deprecated. This value will be auto-assign, so you don't have to set it.

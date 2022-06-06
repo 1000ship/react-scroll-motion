@@ -20,6 +20,7 @@ const environment = new Proxy(
   { width: 0, height: 0 },
   {
     get: (target: Object, key: Symbol | number | string) => {
+      if (typeof window === "undefined") return undefined;
       if (key === "height") {
         if (isIphone && isSafari) return window.screen.height - 80;
         return window.innerHeight;

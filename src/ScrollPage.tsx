@@ -1,16 +1,21 @@
-import React, { useContext } from "react";
-import { ScrollPageContext, ScrollContainerContext } from "./ScrollContext";
+import React, { CSSProperties, FC, ReactNode, useContext } from "react";
+import { ScrollDataContext, ScrollPageContext } from "./stores";
 
 interface ScrollPageProps {
-  children: React.ReactNode;
-  page: number;
+  children: ReactNode | ReactNode[];
   debugBorder?: boolean;
+  /**
+   * @deprecated `page` number will be assigend automatically. You don't have to set it.
+   */
+  page?: number;
 }
 
-const ScrollPage = (props: ScrollPageProps) => {
-  const { children, page, debugBorder = false } = props;
-  const { viewportHeight } = useContext(ScrollContainerContext);
-  const style: React.CSSProperties = {
+const ScrollPage: FC<ScrollPageProps> = (props) => {
+  const { children, debugBorder = false } = props;
+  const { viewportHeight } = useContext(ScrollDataContext);
+  const { page } = useContext(ScrollPageContext);
+
+  const style: CSSProperties = {
     margin: 0,
     padding: 0,
     height: viewportHeight,
@@ -20,11 +25,10 @@ const ScrollPage = (props: ScrollPageProps) => {
     overflow: "hidden",
     ...(debugBorder ? { border: "1px solid red" } : {}),
   };
+
   return (
-    <div style={style}>
-      <ScrollPageContext.Provider value={{ page }}>
-        {children}
-      </ScrollPageContext.Provider>
+    <div key={page} style={style}>
+      {children}
     </div>
   );
 };

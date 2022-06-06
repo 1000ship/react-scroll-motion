@@ -1,43 +1,35 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import { ScrollContainerContext } from "./ScrollContext";
-import environment from "./utils/environment";
+import React, {
+  FC,
+  ReactNode,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+import { initialScrollData } from "./constants";
+import { ScrollDataContext, ScrollPageContext } from "./stores";
+import { ScrollData } from "./types";
+import { environment } from "./utils";
 
 interface ScrollContainerProps {
   snap?: "none" | "proximity" | "mandatory";
-  children: React.ReactNodeArray;
+  children: ReactNode | ReactNode[];
   scrollParent?: Window | HTMLElement;
 }
 
-interface IState {
-  currentY: number;
-  viewportHeight: number;
-  totalPage: number;
-  totalHeight: number;
-  totalProgress: number;
-  realPage: number;
-  currentPage: number;
-  currentProgress: number;
-}
+const _window: (Window & typeof globalThis) | undefined =
+  typeof window !== "undefined" ? window : undefined;
 
-const ScrollAnimatorContainer = (props: ScrollContainerProps) => {
-  const { snap = "none", children, scrollParent = window } = props;
+const ScrollContainer: FC<ScrollContainerProps> = (props) => {
+  const { snap = "none", children, scrollParent: _scrollParent } = props;
+  const scrollParent = _scrollParent || _window;
 
-  const [scrollData, setScrollData] = useState<IState>({
-    currentY: 0, // 현재 스크롤 위치(px)
-    viewportHeight: 0, // 화면 높이(px)
-    totalPage: 0, // 총 페이지 수
-    totalHeight: 0, // 총 페이지 높이 합 (px)
-    totalProgress: 0, // 총 페이지 진행률 (%)
-    realPage: 0, // 실수 페이지
-    currentPage: 0, // 정수 페이지
-    currentProgress: 0, // 현재 페이지 진행률 (%)
-  });
-
-  const doSnap: boolean = snap !== "none";
+  const [scrollData, setScrollData] = useState<ScrollData>(initialScrollData);
   const scrollTimer = useRef<ReturnType<typeof setTimeout>>();
 
   const scrollEvent = useCallback(() => {
-    if (snap && scrollTimer.current) clearTimeout(scrollTimer.current);
+    if (snap !== "none" && scrollTimer.current)
+      clearTimeout(scrollTimer.current);
 
     const currentY: number =
       scrollParent === window
@@ -47,24 +39,29 @@ const ScrollAnimatorContainer = (props: ScrollContainerProps) => {
       scrollParent === window
         ? environment.height
         : (scrollParent as HTMLElement).clientHeight;
-    const totalPage: number = children.length || 0;
+    const totalPage: number = Array.isArray(children) ? children?.length : 1;
     const totalHeight: number = totalPage * (viewportHeight - 1);
     const totalProgress: number = currentY / totalHeight; // 전체 페이지 진행률 0 ~ 1
     const realPage: number = currentY / viewportHeight; // 실수 페이지
     const currentPage: number = Math.floor(realPage); // 정수 페이지
     const currentProgress: number = realPage - currentPage; // 현재 페이지 진행률
-    setScrollData({
-      currentY,
-      viewportHeight,
-      totalPage,
-      totalHeight,
-      totalProgress,
-      realPage,
-      currentPage,
-      currentProgress,
-    } as IState);
 
-    if (doSnap) {
+    setScrollData(
+      (scrollData) =>
+        ({
+          ...scrollData,
+          currentY,
+          viewportHeight,
+          totalPage,
+          totalHeight,
+          totalProgress,
+          realPage,
+          currentPage,
+          currentProgress,
+        } as ScrollData)
+    );
+
+    if (snap !== "none") {
       scrollTimer.current = setTimeout(() => {
         const newCurrentPage = Math.round(realPage);
         let newCurrentY = currentY;
@@ -79,22 +76,33 @@ const ScrollAnimatorContainer = (props: ScrollContainerProps) => {
           });
       }, 50);
     }
-  }, [children.length, doSnap, scrollParent, snap]);
+  }, [children, scrollParent, snap, setScrollData]);
 
   useEffect(() => {
-    scrollEvent();
-    scrollParent.addEventListener("scroll", scrollEvent);
-    scrollParent.addEventListener("resize", scrollEvent);
-    return () => scrollParent.removeEventListener("scroll", scrollEvent);
+    if (scrollParent) {
+      scrollEvent();
+      scrollParent.addEventListener("scroll", scrollEvent);
+      scrollParent.addEventListener("resize", scrollEvent);
+      return () => scrollParent.removeEventListener("scroll", scrollEvent);
+    }
   }, [scrollEvent, scrollParent]);
 
   return (
     <div style={{ margin: 0, padding: 0, userSelect: "none" }}>
-      <ScrollContainerContext.Provider value={scrollData}>
-        {children}
-      </ScrollContainerContext.Provider>
+      <ScrollDataContext.Provider value={scrollData}>
+        {(Array.isArray(children) &&
+          children.map((child, index) => (
+            <ScrollPageContext.Provider value={{ page: index }}>
+              {child}
+            </ScrollPageContext.Provider>
+          ))) || (
+          <ScrollPageContext.Provider value={{ page: 0 }}>
+            {children}
+          </ScrollPageContext.Provider>
+        )}
+      </ScrollDataContext.Provider>
     </div>
   );
 };
 
-export default ScrollAnimatorContainer;
+export default ScrollContainer;

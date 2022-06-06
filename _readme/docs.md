@@ -2,13 +2,13 @@
 
 
 
-## Simple Docs
+## Docs
 
 ### Markup Example
 
 ```jsx
 <ScrollContainer snap="mandatory">
-  <ScrollPage page={0}>
+  <ScrollPage>
     <Animator animation={batch(Fade(), Sticky(), MoveOut(0, -200))}>
       <MediumText>Let't me show you scroll animation 😀</MediumText>
     </Animator>
@@ -23,10 +23,6 @@
 - `ScrollContainer`'s children must be `ScrollPage`
 
 - `ScrollPage` is `position: relative;` thus, if you want use flexbox, make `div` in `ScrollPage`
-
-- `ScrollPage` has `page` props for integer
-
-  *(Honestly, I don't like this way, is there awesome solution?)*
 
 - `Animator` must be in `ScrollPage`
 

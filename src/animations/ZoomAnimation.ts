@@ -1,7 +1,7 @@
-import { IAnimation } from "../utils/interface";
-import { SimpleInterpolation } from "../utils/interpolation";
+import { Animation } from "../types";
+import { SimpleInterpolation } from "../utils";
 
-export const Zoom = (from: number = 10, to: number = 1): IAnimation => ({
+export const Zoom = (from: number = 10, to: number = 1): Animation => ({
   in: {
     style: {
       transform: (value: number) =>
@@ -16,7 +16,7 @@ export const Zoom = (from: number = 10, to: number = 1): IAnimation => ({
   },
 });
 
-export const ZoomIn = (from: number = 10, to: number = 1): IAnimation => ({
+export const ZoomIn = (from: number = 10, to: number = 1): Animation => ({
   in: {
     style: {
       transform: (value: number) =>
@@ -25,7 +25,7 @@ export const ZoomIn = (from: number = 10, to: number = 1): IAnimation => ({
   },
 });
 
-export const ZoomOut = (from: number = 1, to: number = 10): IAnimation => ({
+export const ZoomOut = (from: number = 1, to: number = 10): Animation => ({
   out: {
     style: {
       transform: (value: number) =>

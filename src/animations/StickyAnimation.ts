@@ -1,7 +1,7 @@
-import environment from "../utils/environment";
-import { IAnimation } from "../utils/interface";
+import { environment } from "../utils";
+import { Animation } from "../types";
 
-export const Sticky = (left: number = 50, top: number = 50): IAnimation => ({
+export const Sticky = (left: number = 50, top: number = 50): Animation => ({
   in: {
     style: {
       left: () => `${(left * environment.width) / 100}px`,
@@ -20,7 +20,7 @@ export const Sticky = (left: number = 50, top: number = 50): IAnimation => ({
   },
 });
 
-export const StickyIn = (left: number = 50, top: number = 50): IAnimation => ({
+export const StickyIn = (left: number = 50, top: number = 50): Animation => ({
   in: {
     style: {
       left: () => `${(left * environment.width) / 100}px`,
@@ -39,7 +39,7 @@ export const StickyIn = (left: number = 50, top: number = 50): IAnimation => ({
   },
 });
 
-export const StickyOut = (left: number = 50, top: number = 50): IAnimation => ({
+export const StickyOut = (left: number = 50, top: number = 50): Animation => ({
   in: {
     style: {
       left: `${(left * environment.width) / 100}px`,
