@@ -1,6 +1,7 @@
 import React, {
   FC,
   ReactNode,
+  CSSProperties,
   useCallback,
   useEffect,
   useRef,
@@ -15,13 +16,15 @@ interface ScrollContainerProps {
   snap?: "none" | "proximity" | "mandatory";
   children: ReactNode | ReactNode[];
   scrollParent?: Window | HTMLElement;
+  style?: CSSProperties;
+  className?: string;
 }
 
 const _window: (Window & typeof globalThis) | undefined =
   typeof window !== "undefined" ? window : undefined;
 
 const ScrollContainer: FC<ScrollContainerProps> = (props) => {
-  const { snap = "none", children, scrollParent: _scrollParent } = props;
+  const { snap = "none", children, scrollParent: _scrollParent, style, className } = props;
   const scrollParent = _scrollParent || _window;
 
   const [scrollData, setScrollData] = useState<ScrollData>(initialScrollData);
@@ -88,7 +91,7 @@ const ScrollContainer: FC<ScrollContainerProps> = (props) => {
   }, [scrollEvent, scrollParent]);
 
   return (
-    <div style={{ margin: 0, padding: 0, userSelect: "none" }}>
+    <div style={{ margin: 0, padding: 0, userSelect: "none", ...style }} className={className}>
       <ScrollDataContext.Provider value={scrollData}>
         {(Array.isArray(children) &&
           children.map((child, index) => (
