@@ -92,7 +92,7 @@ const ScrollContainer: FC<ScrollContainerProps> = (props) => {
       <ScrollDataContext.Provider value={scrollData}>
         {(Array.isArray(children) &&
           children.map((child, index) => (
-            <ScrollPageContext.Provider value={{ page: index }}>
+            <ScrollPageContext.Provider key={index} value={{ page: index }}>
               {child}
             </ScrollPageContext.Provider>
           ))) || (
