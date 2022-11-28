@@ -14,10 +14,12 @@ import { computeStyle } from "./utils";
 interface AnimatorProps {
   children: ReactNode | ReactNode[];
   animation: Animation;
+  style?: CSSProperties;
+  className?: string;
 }
 
 const Animator: FC<AnimatorProps> = (props) => {
-  const { children, animation } = props;
+  const { children, animation, style, className } = props;
   const { currentPage, currentProgress } = useContext(ScrollDataContext);
   const { page } = useContext(ScrollPageContext);
   const [isSSR, setIsSSR] = useState(true);
@@ -30,14 +32,16 @@ const Animator: FC<AnimatorProps> = (props) => {
   const calculatedStyle: CSSProperties | undefined = useMemo(
     () =>
       isSSR
-        ? undefined
+        ? style
         : currentPage === page // for current (out)
         ? ({
             ...computeStyle(animation?.out?.style, currentProgress),
+            ...style,
           } as CSSProperties)
         : currentPage === page - 1 // for next (in)
         ? ({
             ...computeStyle(animation?.in?.style, currentProgress),
+            ...style,
           } as CSSProperties)
         : { display: "none" },
     [
@@ -47,11 +51,12 @@ const Animator: FC<AnimatorProps> = (props) => {
       animation?.out?.style,
       animation?.in?.style,
       currentProgress,
+      style
     ]
   );
 
   return (
-    <div suppressHydrationWarning style={calculatedStyle}>
+    <div suppressHydrationWarning style={calculatedStyle} className={className}>
       {children}
     </div>
   );
