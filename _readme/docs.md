@@ -10,10 +10,10 @@
 <ScrollContainer snap="mandatory">
   <ScrollPage>
     <Animator animation={batch(Fade(), Sticky(), MoveOut(0, -200))}>
-      <MediumText>Let't me show you scroll animation 😀</MediumText>
+      <MediumText>Let me show you scroll animation 😀</MediumText>
     </Animator>
   </ScrollPage>
-<ScrollContainer>
+</ScrollContainer>
 ```
 
 - `ScrollContainer` must be root
