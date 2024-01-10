@@ -39,3 +39,7 @@
   - `IAnimation` to `Animation`
   - `IStyle` to `Style`
 - `page` props is deprecated. This value will be auto-assign, so you don't have to set it.
+
+## version 0.3.3
+
+- Added 'use client' on top of `ScrollContainer` for supporting NextJS v13+
