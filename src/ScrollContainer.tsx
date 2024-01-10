@@ -1,7 +1,9 @@
+"use client";
+
 import React, {
+  CSSProperties,
   FC,
   ReactNode,
-  CSSProperties,
   useCallback,
   useEffect,
   useRef,
@@ -24,7 +26,13 @@ const _window: (Window & typeof globalThis) | undefined =
   typeof window !== "undefined" ? window : undefined;
 
 const ScrollContainer: FC<ScrollContainerProps> = (props) => {
-  const { snap = "none", children, scrollParent: _scrollParent, style, className } = props;
+  const {
+    snap = "none",
+    children,
+    scrollParent: _scrollParent,
+    style,
+    className,
+  } = props;
   const scrollParent = _scrollParent || _window;
 
   const [scrollData, setScrollData] = useState<ScrollData>(initialScrollData);
@@ -91,11 +99,17 @@ const ScrollContainer: FC<ScrollContainerProps> = (props) => {
   }, [scrollEvent, scrollParent]);
 
   return (
-    <div style={{ margin: 0, padding: 0, userSelect: "none", ...style }} className={className}>
+    <div
+      style={{ margin: 0, padding: 0, userSelect: "none", ...style }}
+      className={className}
+    >
       <ScrollDataContext.Provider value={scrollData}>
         {(Array.isArray(children) &&
           children.map((child, index) => (
-            <ScrollPageContext.Provider value={{ page: index }} key={`scroll-page-${index}`}>
+            <ScrollPageContext.Provider
+              value={{ page: index }}
+              key={`scroll-page-${index}`}
+            >
               {child}
             </ScrollPageContext.Provider>
           ))) || (
