@@ -63,9 +63,10 @@ import { ScrollContainer, ScrollPage, batch, Fade, FadeIn, FadeOut, Move, MoveIn
 ```jsx
 "use client";
 
-import { ScrollContainer, ScrollPage, batch, Fade, FadeIn, FadeOut, Move, MoveIn, MoveOut, Sticky, StickyIn, StickyOut, Zoom, ZoomIn, ZoomOut } from "react-scroll-motion";
+import { Animator, ScrollContainer, ScrollPage, batch, Fade, FadeIn, FadeOut, Move, MoveIn, MoveOut, Sticky, StickyIn, StickyOut, Zoom, ZoomIn, ZoomOut } from "react-scroll-motion";
 ```
-- Please add `"use client";` at the top of your file, when using NextJS v13 or higher
+- Please add `"use client";` at the top of your file, when using NextJS v13 or higher.
+- You don't need to use `next/dynamic` anymore
 - Here's NextJS v14 example code (https://github.com/1000ship/nextjs-14-react-scroll-motion)
 
 ## Example Code
