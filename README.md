@@ -46,7 +46,7 @@ import { Animator, ScrollContainer, ScrollPage, batch, Fade, FadeIn, FadeOut, Mo
 
 - Support up to 18 version
 
-### NextJS
+### NextJS v12 or lower
 ```jsx
 import dynamic from "next/dynamic";
 const Animator = dynamic(
@@ -58,6 +58,15 @@ import { ScrollContainer, ScrollPage, batch, Fade, FadeIn, FadeOut, Move, MoveIn
 ```
 - **Check this out especially if you use *NextJS***
 - Please import `Animator` component with `next/dynamic` like upper code, when using NextJS
+
+### NextJS v13 or higher
+```jsx
+"use client";
+
+import { ScrollContainer, ScrollPage, batch, Fade, FadeIn, FadeOut, Move, MoveIn, MoveOut, Sticky, StickyIn, StickyOut, Zoom, ZoomIn, ZoomOut } from "react-scroll-motion";
+```
+- Please add `"use client";` at the top of your file, when using NextJS v13 or higher
+- Here's NextJS v14 example code (https://github.com/1000ship/nextjs-14-react-scroll-motion)
 
 ## Example Code
 ```jsx
