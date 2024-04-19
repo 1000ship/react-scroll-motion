@@ -192,7 +192,7 @@ const Spin = (cycle: number) =>
 
 👤 **Dante Chun**
 
-* Website: 1000ship.me
+* Website: https://dante.company
 * Github: [@1000ship](https://github.com/1000ship)
 
 ## 🤝 Contributing
