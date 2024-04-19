@@ -18,7 +18,7 @@
   "author": {
     "email": "dev.1000ship@gmail.com",
     "name": "Dante Chun",
-    "url": "https://1000ship.me"
+    "url": "https://dante.company"
   },
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
