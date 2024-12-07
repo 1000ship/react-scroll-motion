@@ -31,7 +31,8 @@
   ],
   "private": false,
   "scripts": {
-    "build": "rimraf ./dist && npx tsc"
+    "build": "rimraf ./dist && npx tsc",
+    "prepare": "npm run build"
   },
   "peerDependencies": {
     "react": "^18.0.11",
