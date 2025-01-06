@@ -51,7 +51,7 @@ const Animator: FC<AnimatorProps> = (props) => {
       animation?.out?.style,
       animation?.in?.style,
       currentProgress,
-      style
+      style,
     ]
   );
 
