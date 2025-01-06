@@ -58,10 +58,10 @@ const ScrollContainer: FC<ScrollContainerProps> = (props) => {
         : (scrollParent as HTMLElement).clientHeight;
     const totalPage: number = Array.isArray(children) ? children?.length : 1;
     const totalHeight: number = totalPage * (viewportHeight - 1);
-    const totalProgress: number = currentY / totalHeight; // 전체 페이지 진행률 0 ~ 1
-    const realPage: number = currentY / viewportHeight; // 실수 페이지
-    const currentPage: number = Math.floor(realPage); // 정수 페이지
-    const currentProgress: number = realPage - currentPage; // 현재 페이지 진행률
+    const totalProgress: number = currentY / totalHeight; // total page progress 0 ~ 1
+    const realPage: number = currentY / viewportHeight; // decimal page number
+    const currentPage: number = Math.floor(realPage); // integer page number
+    const currentProgress: number = realPage - currentPage; // current page progress
 
     setScrollData(
       (scrollData) =>
