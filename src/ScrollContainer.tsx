@@ -36,26 +36,32 @@ const ScrollContainer: FC<ScrollContainerProps> = (props) => {
   const scrollParent = _scrollParent || _window;
 
   const [scrollData, setScrollData] = useState<ScrollData>(initialScrollData);
+  const containerRef = useRef<HTMLDivElement>(null);
   const scrollTimer = useRef<ReturnType<typeof setTimeout>>();
 
   const scrollEvent = useCallback(() => {
     if (snap !== "none" && scrollTimer.current)
       clearTimeout(scrollTimer.current);
 
-    const currentY: number =
+    const container = containerRef.current;
+    if (!container) return;
+
+    const currentScrollTop =
       scrollParent === window
         ? window.pageYOffset
         : (scrollParent as HTMLElement).scrollTop;
+    const offsetTop = container.getBoundingClientRect().top + currentScrollTop;
+    const currentY: number = currentScrollTop - offsetTop;
     const viewportHeight: number =
       scrollParent === window
         ? environment.height
         : (scrollParent as HTMLElement).clientHeight;
     const totalPage: number = Array.isArray(children) ? children?.length : 1;
     const totalHeight: number = totalPage * (viewportHeight - 1);
-    const totalProgress: number = currentY / totalHeight; // 전체 페이지 진행률 0 ~ 1
-    const realPage: number = currentY / viewportHeight; // 실수 페이지
-    const currentPage: number = Math.floor(realPage); // 정수 페이지
-    const currentProgress: number = realPage - currentPage; // 현재 페이지 진행률
+    const totalProgress: number = currentY / totalHeight; // total page progress 0 ~ 1
+    const realPage: number = currentY / viewportHeight; // decimal page number
+    const currentPage: number = Math.floor(realPage); // integer page number
+    const currentProgress: number = realPage - currentPage; // current page progress
 
     setScrollData(
       (scrollData) =>
@@ -82,7 +88,7 @@ const ScrollContainer: FC<ScrollContainerProps> = (props) => {
 
         if (newCurrentY !== currentY)
           window.scrollTo({
-            top: newCurrentY,
+            top: newCurrentY + offsetTop,
             behavior: "smooth",
           });
       }, 50);
@@ -94,12 +100,16 @@ const ScrollContainer: FC<ScrollContainerProps> = (props) => {
       scrollEvent();
       scrollParent.addEventListener("scroll", scrollEvent);
       scrollParent.addEventListener("resize", scrollEvent);
-      return () => scrollParent.removeEventListener("scroll", scrollEvent);
+      return () => {
+        scrollParent.removeEventListener("scroll", scrollEvent);
+        scrollParent.removeEventListener("resize", scrollEvent);
+      };
     }
   }, [scrollEvent, scrollParent]);
 
   return (
     <div
+      ref={containerRef}
       style={{ margin: 0, padding: 0, userSelect: "none", ...style }}
       className={className}
     >
