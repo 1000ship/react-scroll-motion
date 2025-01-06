@@ -27,29 +27,29 @@ export default function Home() {
   const FadeUp = batch(Fade(), Move(), Sticky());
 
   // Make custom animation
-  const Spin = (cycle: number) =>
+  const Spin = (cycle: number, direction: "in" | "out" | "both" = "both") =>
     ({
-      in: {
-        style: {
-          transform: (p) => `rotate(${p * 360 * cycle}deg)`,
-        },
-      },
-      out: {
-        style: {
-          transform: (p) => `rotate(${p * 360 * cycle}deg)`,
-        },
-      },
+      in:
+        direction === "in" || direction === "both"
+          ? { style: { transform: (p) => `rotate(${p * 360 * cycle}deg)` } }
+          : {},
+      out:
+        direction === "out" || direction === "both"
+          ? { style: { transform: (p) => `rotate(${p * 360 * cycle}deg)` } }
+          : {},
     } as Animation);
 
   const parent = useRef<HTMLDivElement>(null);
   return (
     <main>
-      <section style={{ height: "80vh", backgroundColor: "red" }}></section>
+      <section
+        style={{ height: "100vh", backgroundColor: "skyblue" }}
+      ></section>
 
       <section ref={parent}>
         <ScrollContainer scrollParent={parent.current}>
           <ScrollPage>
-            <Animator animation={batch(Sticky(), Fade(), Spin(3))}>
+            <Animator animation={batch(Sticky(), Fade(), Spin(1, "out"))}>
               <h1 style={{ fontSize: 50 }}>Hello!!!</h1>
             </Animator>
           </ScrollPage>

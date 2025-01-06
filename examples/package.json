@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "reinstall": "rm yarn.lock && rm -rf node_modules && yarn install",
+    "reinstall": "rm -rf .next && yarn cache clean react-scroll-motion && yarn remove react-scroll-motion && yarn add file:../",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -13,7 +13,7 @@
     "next": "12.1.6",
     "react": "18.1.0",
     "react-dom": "18.1.0",
-    "react-scroll-motion": "../"
+    "react-scroll-motion": "file:../"
   },
   "devDependencies": {
     "@types/node": "^17.0.39",
