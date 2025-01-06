@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "reinstall": "rm -rf .next && yarn cache clean react-scroll-motion && yarn remove react-scroll-motion && yarn add file:../",
+    "reinstall:local": "rm -rf .next && yarn cache clean react-scroll-motion && yarn remove react-scroll-motion && yarn add file:../",
+    "reinstall:remote": "rm -rf .next && yarn cache clean react-scroll-motion && yarn remove react-scroll-motion && yarn add react-scroll-motion",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
