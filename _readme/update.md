@@ -43,3 +43,8 @@
 ## version 0.3.3
 
 - Added 'use client' on top of `ScrollContainer` for supporting NextJS v13+
+
+## version 0.3.4
+
+- Fix scroll parent is not working
+- Update example codes
