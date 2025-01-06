@@ -1,13 +1,9 @@
 import React, { CSSProperties, FC, ReactNode, useContext } from "react";
-import { ScrollDataContext, ScrollPageContext } from "./stores";
+import { ScrollDataContext } from "./stores";
 
 interface ScrollPageProps {
   children: ReactNode | ReactNode[];
   debugBorder?: boolean;
-  /**
-   * @deprecated `page` number will be assigend automatically. You don't have to set it.
-   */
-  page?: number;
   style?: CSSProperties;
   className?: string;
 }
@@ -15,7 +11,6 @@ interface ScrollPageProps {
 const ScrollPage: FC<ScrollPageProps> = (props) => {
   const { children, debugBorder = false, className, style } = props;
   const { viewportHeight } = useContext(ScrollDataContext);
-  const { page } = useContext(ScrollPageContext);
 
   const pageStyle: CSSProperties = {
     margin: 0,
@@ -30,7 +25,7 @@ const ScrollPage: FC<ScrollPageProps> = (props) => {
   };
 
   return (
-    <div key={page} style={pageStyle} className={className}>
+    <div style={pageStyle} className={className}>
       {children}
     </div>
   );
