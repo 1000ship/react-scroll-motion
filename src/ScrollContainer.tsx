@@ -46,7 +46,10 @@ const ScrollContainer: FC<ScrollContainerProps> = (props) => {
     const container = containerRef.current;
     if (!container) return;
 
-    const currentScrollTop = scrollParent === window ? window.pageYOffset : (scrollParent as HTMLElement).scrollTop;
+    const currentScrollTop =
+      scrollParent === window
+        ? window.pageYOffset
+        : (scrollParent as HTMLElement).scrollTop;
     const offsetTop = container.getBoundingClientRect().top + currentScrollTop;
     const currentY: number = currentScrollTop - offsetTop;
     const viewportHeight: number =
