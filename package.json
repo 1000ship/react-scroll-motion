@@ -34,11 +34,11 @@
     "build": "rimraf ./dist && npx tsc"
   },
   "peerDependencies": {
-    "react": "^18.0.11",
-    "react-dom": "^18.0.11"
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0"
   },
   "devDependencies": {
-    "@types/react": "^18.0.11",
+    "@types/react": ">=18.0.11",
     "rimraf": "^3.0.2",
     "typescript": "^4.7.3"
   }
