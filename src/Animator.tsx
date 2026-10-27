@@ -43,7 +43,16 @@ const Animator: FC<AnimatorProps> = (props) => {
             ...computeStyle(animation?.in?.style, currentProgress),
             ...style,
           } as CSSProperties)
-        : { display: "none" },
+        : {
+            // Keep the element rendered instead of removing it with
+            // `display: none`, so it stays in the layout: `scrollIntoView`
+            // and navbar scrolling keep working on pages that have been
+            // scrolled away, and content no longer disappears abruptly
+            // when the page index moves out of range (see #5, #9, #38).
+            visibility: "hidden",
+            pointerEvents: "none",
+            ...style,
+          },
     [
       isSSR,
       currentPage,
